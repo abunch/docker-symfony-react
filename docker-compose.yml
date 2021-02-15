@@ -14,15 +14,15 @@ services:
         environment:
             XDEBUG_MODE: debug
             XDEBUG_CONFIG: "client_host=172.17.0.1 client_port=9003"
-            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-"serverName=localhost"}
+            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
         volumes:
             - ./src:/var/www/src
 
     mariadb:
         image: mariadb:10.4
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-pass}
-            MYSQL_DATABASE: ${MYSQL_DATABASE:-db}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
         volumes:
             - mariadb:/var/lib/mysql
         ports:
@@ -30,4 +30,4 @@ services:
 
 volumes:
     mariadb:
-        name: ${DB_VOLUME_NAME:-"db-mariadb"}
+        name: ${DB_VOLUME_NAME}

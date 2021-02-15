@@ -1,6 +1,12 @@
+#!make
+include .env.dist
+export $(shell sed 's/=.*//' .env.dist)
+
 default: init
 
 init:
+	cp .env.dist src/.env
+	cp .env.dist src/.env.local
 	docker-compose up -d
 	docker-compose exec -u www-data front composer install
 	docker-compose exec -u www-data front php bin/console doctrine:migrations:migrate --no-interaction
